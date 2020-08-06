@@ -16,13 +16,9 @@ public class PasteBinTests {
         Configuration.holdBrowserOpen = true;
         open("https://pastebin.com/");
         $(byId("postform-text")).setValue("Hello from QAGURU");
-
         executeJavaScript("$('#postform-expiration').attr('style','display: block;')");
         $("#postform-expiration").selectOption("10 Minutes");
-
-
         $(byXpath("//button[text()='Create New Paste']")).click();
-
         sleep(2000);
         assertEquals(title(), "Hello from QAGURU" + " - Pastebin.com");
 
