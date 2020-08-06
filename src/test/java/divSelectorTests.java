@@ -15,5 +15,6 @@ public class divSelectorTests {
         open("file:/home/evgeniy/IdeaProjects/qaguru/src/test/resources/divtest.html");
         $("div h1").shouldHave(text("Text1"));
         $("div").$("h1").shouldHave(text("Text1"));
+        //не нашел разницы, может на сложном форматировании есть...
     }
 }
