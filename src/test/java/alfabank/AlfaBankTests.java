@@ -1,23 +1,27 @@
 package alfabank;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
+import basetest.BaseTest;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.title;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AlfaBankTests {
+public class AlfaBankTests extends BaseTest {
     @Test
     void checkSizeDepozit() {
-        Configuration.holdBrowserOpen = true;
         open("https://alfabank.ru/");
         $(byText("Вклады")).click();
         $(byText("Депозиты")).click();
         $$(".product-cell__cell-back").filter(visible).shouldHaveSize(2);
+    }
 
+    @Test
+    public void openPageDepozitInsurance() {
+        open("https://alfabank.ru/");
+        $(byText("Вклады")).click();
+        $(".selected").sibling(4).$("a").click();
+        $("h1").shouldHave(text("Страхование вкладов"));
+        $(".col-sm-8").parent().shouldHave(text("АО «АЛЬФА-БАНК» является участником"));
     }
 }
