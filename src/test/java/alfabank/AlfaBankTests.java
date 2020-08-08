@@ -8,9 +8,10 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AlfaBankTests extends BaseTest {
+    final String urlAlfaBank="https://alfabank.ru/";
     @Test
     void checkSizeDepozit() {
-        open("https://alfabank.ru/");
+        open(urlAlfaBank);
         $(byText("Вклады")).click();
         $(byText("Депозиты")).click();
         $$(".product-cell__cell-back").filter(visible).shouldHaveSize(2);
@@ -18,7 +19,7 @@ public class AlfaBankTests extends BaseTest {
 
     @Test
     public void openPageDepozitInsurance() {
-        open("https://alfabank.ru/");
+        open(urlAlfaBank);
         $(byText("Вклады")).click();
         $(".selected").sibling(4).$("a").click();
         $("h1").shouldHave(text("Страхование вкладов"));
