@@ -8,11 +8,11 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AlfaBankTests extends BaseTest {
-    final String urlAlfaBank = "https://alfabank.ru/";
+    final String URL_ALFA_BANK = "https://alfabank.ru/";
 
     @Test
     void checkSizeDepozit() {
-        open(urlAlfaBank);
+        open(URL_ALFA_BANK);
 
         $(byTitle("Вклады")).click();
         $(byTitle("Депозиты")).click();
@@ -23,15 +23,13 @@ public class AlfaBankTests extends BaseTest {
 
     @Test
     public void openPageDepozitInsurance() {
-        open(urlAlfaBank);
+        open(URL_ALFA_BANK);
 
         $(byTitle("Вклады")).click();
-        $(".selected").sibling(4).click();
 
-        //ниже не работает почему то, буду разбираться.
-      //  $(byTitle("Страхование вкладов")).parent().parent().sibling(4).click();
+        $(byTitle("Страхование вкладов")).parent().lastChild().click();
 
-       $("h1").shouldHave(text("Страхование вкладов"));
-       $(".col-sm-8").shouldHave(text("АО «АЛЬФА-БАНК» является участником"));
+        $("h1").shouldHave(text("Страхование вкладов"));
+        $(".col-sm-8").shouldHave(text("АО «АЛЬФА-БАНК» является участником"));
     }
 }
